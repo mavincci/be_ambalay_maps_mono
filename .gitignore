@@ -1,0 +1,144 @@
+# -------------------------
+# Gradle / build artifacts
+# -------------------------
+.gradle/
+**/build/
+**/out/
+**/target/
+build/
+!gradle/wrapper/gradle-wrapper.jar  # usually committed; keep wrapper
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.exe
+*.dll
+*.so
+
+# Gradle caches (local to developer machine)
+# (Don't commit .gradle/ - that contains build caches and local state)
+.gradle/
+.gradle-local/
+
+# Maven (if any modules use maven)
+.mvn/
+# Ignore maven wrapper binary if you don't commit it (adjust as needed)
+#mvnw
+#mvnw.cmd
+
+# -------------------------
+# IDE / Editor
+# -------------------------
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# VS Code
+.vscode/
+.history/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# -------------------------
+# OS generated
+# -------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------------------------
+# Spring / App local config & secrets
+# -------------------------
+# local env files
+.env
+.env.*
+application-*.local.*
+application-*.secret.*
+secrets.*
+secret.*
+*.keystore
+*.jks
+
+# don't accidentally commit common local config used for dev only
+# (If you keep your dev files under source control, remove these)
+application-local.yml
+application-local.properties
+local.properties
+
+# -------------------------
+# Test / coverage / reports
+# -------------------------
+coverage/
+*.exec
+report/
+test-results/
+**/test-results/
+**/reports/
+jacoco.exec
+junit-report-*.xml
+
+# -------------------------
+# CI / tooling
+# -------------------------
+# IDE specific CI caches
+.cache/
+tmp/
+*.tmp
+
+# lockfiles & dependency caches (include if monorepo also includes Node)
+node_modules/
+package-lock.json
+yarn.lock
+.pnpm-store/
+.pnpm-debug.log
+
+# -------------------------
+# Generated documentation / site
+# -------------------------
+site/
+docs/
+build/docs/
+
+# -------------------------
+# Deployment / container
+# -------------------------
+Dockerfile.*.local
+docker-compose.*.local.yml
+*.env.local
+
+# -------------------------
+# Misc
+# -------------------------
+# Vim swap files, Emacs backup
+.*.swp
+*~
+*.swo
+# logs
+*.out
+*.err
+# compressed files - sometimes created by build/test processes
+*.gz
+*.bz2
+
+# -------------------------
+# Add exceptions for things you intentionally commit
+# -------------------------
+# Example: if you want to commit one module build output (rare), add a !rule
+# !module/some-artifact.jar
