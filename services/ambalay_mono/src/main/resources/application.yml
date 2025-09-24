@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: be-ambalay-maps-mono
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.ambalay.maps.mono: INFO

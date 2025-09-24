@@ -6,3 +6,5 @@
  */
 
 rootProject.name = 'be_ambalay_maps_mono'
+
+include("services:ambalay_mono")
