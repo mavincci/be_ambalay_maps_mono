@@ -21,18 +21,18 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<UserDto>> signup(@Valid @RequestBody SignupDto dto) {
         UserDto user = authService.signup(dto);
-        return ApiResponse.success(201, "User created successfully", user);
+        return ApiResponse.success(201, "USER_CREATE_SUCCESS", user);
     }
 
     @PostMapping("/signin")
     public ResponseEntity<ApiResponse<UserSessionDto>> signin(@Valid @RequestBody SigninDto dto) {
         UserSessionDto session = authService.signin(dto);
-        return ApiResponse.success("Login successful", session);
+        return ApiResponse.success("USER_SIGNIN_SUCCESS", session);
     }
 
     @GetMapping("/whoami")
     public ResponseEntity<ApiResponse<UserDto>> whoami(Authentication authentication) {
         UserDto user = authService.getCurrentUser(authentication.getName());
-        return ApiResponse.success("User details retrieved", user);
+        return ApiResponse.success("USER_FETCH_SUCCESS", user);
     }
 }
