@@ -6,7 +6,6 @@
 **/out/
 **/target/
 build/
-!gradle/wrapper/gradle-wrapper.jar  # usually committed; keep wrapper
 *.class
 *.log
 *.jar

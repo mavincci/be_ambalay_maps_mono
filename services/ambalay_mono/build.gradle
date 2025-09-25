@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.ambalay.maps.mono'
+version = '0.1.0-SNAPSHOT'
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.0"
+    }
+}
+
+dependencies {
+    // Mail
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Pg
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // Doc
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
+
+    // Phone number
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.13.39'
+
+    // Pg
+    runtimeOnly 'org.postgresql:postgresql'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

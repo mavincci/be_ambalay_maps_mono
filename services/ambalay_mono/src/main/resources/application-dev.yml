@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: DEV=be-ambalay-maps-mono
+  
+  datasource:
+    url: jdbc:postgresql://localhost:8432/db_pg_ambalay_maps_mono
+    username: usr_pg_ambalay_maps_mono
+    password: pass_pg_ambalay_maps_mono
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: mono
+        format_sql: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.ambalay.maps.mono: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
