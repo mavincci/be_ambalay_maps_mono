@@ -31,6 +31,12 @@ dependencies {
     // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Pg
+    runtimeOnly 'org.postgresql:postgresql'
+
     // Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 

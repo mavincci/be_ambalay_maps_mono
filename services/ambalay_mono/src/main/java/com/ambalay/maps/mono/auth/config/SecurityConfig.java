@@ -1,4 +1,4 @@
-package com.ambalay.maps.mono.auth;
+package com.ambalay.maps.mono.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
