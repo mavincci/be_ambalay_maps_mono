@@ -35,4 +35,12 @@ public class AuthController {
         UserDto user = authService.getCurrentUser(authentication.getName());
         return ApiResponse.success("USER_FETCH_SUCCESS", user);
     }
+
+    @PutMapping("/change-password")
+    public ResponseEntity<ApiResponse<Void>> changePassword(
+            @Valid @RequestBody ChangePasswordDto dto,
+            Authentication authentication) {
+        authService.changePassword(authentication.getName(), dto);
+        return ApiResponse.success("PASSWORD_CHANGE_SUCCESS", null);
+    }
 }
