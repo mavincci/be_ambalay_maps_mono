@@ -83,6 +83,20 @@ public class AuthService {
         return UserDto.fromEntity(user);
     }
 
+    @Transactional
+    public void changePassword(String email, ChangePasswordDto dto) {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new UnauthorizedException("USER_NOT_FOUND"));
+        
+        if (!passwordEncoder.matches(dto.currentPassword(), user.getPasswordHash())) {
+            throw new UnauthorizedException("CURRENT_PASSWORD_IS_INVALID");
+        }
+        
+        String newHashedPassword = passwordEncoder.encode(dto.newPassword());
+        user.setPasswordHash(newHashedPassword);
+        userRepository.save(user);
+    }
+
     private String generateJwt(User user) {
         SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
         
