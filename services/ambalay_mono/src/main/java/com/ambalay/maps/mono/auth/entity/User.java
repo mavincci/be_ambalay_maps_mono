@@ -36,4 +36,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private Role role = Role.ORG_ADMIN;
+
+    @Column(name = "api_key", unique = true)
+    private String apiKey;
 }
