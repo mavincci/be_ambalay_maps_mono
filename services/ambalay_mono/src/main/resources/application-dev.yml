@@ -1,13 +1,13 @@
 spring:
   application:
     name: DEV=be-ambalay-maps-mono
-  
+
   datasource:
     url: jdbc:postgresql://localhost:8432/db_pg_ambalay_maps_mono
     username: usr_pg_ambalay_maps_mono
     password: pass_pg_ambalay_maps_mono
     driver-class-name: org.postgresql.Driver
-  
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -16,12 +16,6 @@ spring:
       hibernate:
         default_schema: mono
         format_sql: true
-  
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
-    default-schema: mono
 
 server:
   port: 8080
