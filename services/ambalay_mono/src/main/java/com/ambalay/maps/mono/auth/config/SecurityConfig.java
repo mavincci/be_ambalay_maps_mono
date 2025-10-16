@@ -1,5 +1,6 @@
 package com.ambalay.maps.mono.auth.config;
 
+import com.ambalay.maps.mono.auth.service.UserApiKeyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final UserApiKeyService userApiKeyService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -26,14 +28,20 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/health", "/auth/**").permitAll()
+                        .requestMatchers("/health", "/auth/signin", "/auth/signup").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(userApiKeyAuthenticationFilter(), JwtAuthenticationFilter.class)
                 .build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserApiKeyAuthenticationFilter userApiKeyAuthenticationFilter() {
+        return new UserApiKeyAuthenticationFilter(userApiKeyService);
     }
 }

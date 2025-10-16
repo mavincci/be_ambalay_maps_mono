@@ -3,6 +3,7 @@ package com.ambalay.maps.mono.auth.controller;
 import com.ambalay.maps.mono.auth.dto.*;
 import com.ambalay.maps.mono.global.dto.ApiResponse;
 import com.ambalay.maps.mono.auth.service.AuthService;
+import com.ambalay.maps.mono.auth.service.UserApiKeyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final UserApiKeyService userApiKeyService;
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<UserDto>> signup(@Valid @RequestBody SignupDto dto) {
@@ -42,5 +44,17 @@ public class AuthController {
             Authentication authentication) {
         authService.changePassword(authentication.getName(), dto);
         return ApiResponse.success("PASSWORD_CHANGE_SUCCESS", null);
+    }
+
+    @PostMapping("/regenerate-api-key")
+    public ResponseEntity<ApiResponse<ApiKeyResponseDto>> regenerateApiKey(Authentication authentication) {
+        ApiKeyResponseDto apiKey = userApiKeyService.regenerateApiKey(authentication.getName());
+        return ApiResponse.success("API_KEY_REGENERATE_SUCCESS", apiKey);
+    }
+
+    @GetMapping("/api-key")
+    public ResponseEntity<ApiResponse<ApiKeyResponseDto>> getApiKey(Authentication authentication) {
+        ApiKeyResponseDto apiKey = userApiKeyService.getApiKey(authentication.getName());
+        return ApiResponse.success("API_KEY_FETCH_SUCCESS", apiKey);
     }
 }
